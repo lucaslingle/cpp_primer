@@ -46,6 +46,8 @@ int main() {
 
     print_svec(v6);
     print_svec(v7);
+
+    return 0;
 }
 
 /*

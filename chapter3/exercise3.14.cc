@@ -21,4 +21,6 @@ int main() {
         cout << i << ", ";
     cout << "}";
     cout << endl;
+
+    return 0;
 }

@@ -23,4 +23,6 @@ int main() {
         cout << s << ", ";
     cout << "}";
     cout << endl;
+
+    return 0;
 }
