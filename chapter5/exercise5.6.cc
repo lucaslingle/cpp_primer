@@ -21,4 +21,5 @@ int main() {
     letter_grade += (numeric_grade < 60 || numeric_grade == 100) ? "" : ((numeric_grade % 10 > 7) ? "+" : "");
 
     std::cout << letter_grade << std::endl;
+    return 0;
 }

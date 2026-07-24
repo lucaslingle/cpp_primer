@@ -28,4 +28,6 @@ int main() {
         }
         std::cout << letter_grade << std::endl;
     }
+
+    return 0;
 }
