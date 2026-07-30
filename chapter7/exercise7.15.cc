@@ -10,8 +10,8 @@ struct Person {
     std::string address;
 
     Person() = default;
-    Person(std::string &n): name(n) { }
-    Person(std::string &n, str::string &a): name(n), address(a) { }
+    Person(const std::string &n): name(n) { }
+    Person(const std::string &n, const str::string &a): name(n), address(a) { }
 
     std::string get_name() const {
         return name;
