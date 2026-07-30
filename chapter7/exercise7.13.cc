@@ -1,16 +1,25 @@
 /*
-Rewrite the transaction-processing program you wrote for the exercises 
-in Sec 7.1.2 (p. 260) -- basically exercises 7.2 & 7.3 -- to use the 
-new functions from exercise 7.6.
+Rewrite the program from p. 255 to use the istream constructor.
 */
 
 #include <iostream>
 #include <string>
 
+struct Sales_data;
+std::istream &read(std::istream &ist, Sales_data &data);
+
 struct Sales_data {
     std::string bookNo;
     unsigned units_sold = 0;
     double revenue = 0.0;
+
+    Sales_data() = default;
+    Sales_data(const std::string &s): bookNo(s) { }
+    Sales_data(const std::string &s, unsigned n, double p):
+        bookNo(s), units_sold(n), revenue(p*n) { }
+    Sales_data(std::istream &ist) {
+        read(ist, *this);
+    }
 
     Sales_data &combine(const Sales_data &elem) {
         units_sold += elem.units_sold;
@@ -43,10 +52,10 @@ std::ostream &print(std::ostream &ost, const Sales_data &data) {
 }
 
 int main() {
-    Sales_data total;
-    if (read(std::cin, total)) {
-        Sales_data trans;
-        while (read(std::cin, trans)) {
+    if (std::cin) {
+        Sales_data total = Sales_data(std::cin);
+        while (std::cin) {
+            Sales_data trans = Sales_data(std::cin);
             if (total.isbn() == trans.isbn())
                 total.combine(trans);
             else {
@@ -54,7 +63,6 @@ int main() {
                 total = trans;
             }
         }
-        print(std::cout, total) << std::endl;
     } else {
         std::cerr << "No data?!" << std::endl;
         return -1;

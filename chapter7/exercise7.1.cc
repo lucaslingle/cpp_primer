@@ -7,7 +7,7 @@ using the Sales_data class you defined in exercise 2.40.
 #include <string>
 
 struct Sales_data {
-    std::string bookNo = "";
+    std::string bookNo;
     unsigned units_sold = 0;
     double revenue = 0.0;
 };
