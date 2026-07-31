@@ -16,7 +16,7 @@ struct Person {
     std::string get_address() const {
         return address;
     }
-}
+};
 
 std::istream &read(std::istream &ist, Person &person) {
     ist >> person.name >> person.address;

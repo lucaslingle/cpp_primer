@@ -24,4 +24,4 @@ struct Person {
         std::string get_address() const {
             return address;
         }
-}
+};

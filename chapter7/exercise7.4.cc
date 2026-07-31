@@ -9,4 +9,4 @@ Subsequent exercises will incrementally add features to this class.
 struct Person {
     std::string name;
     std::string address;
-}
+};

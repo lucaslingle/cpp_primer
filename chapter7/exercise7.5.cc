@@ -15,6 +15,6 @@ struct Person {
     std::string get_address() const {
         return address;
     }
-}
+};
 
 // both member functions should be const because they dont modify the class.
