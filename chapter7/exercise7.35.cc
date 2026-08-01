@@ -39,11 +39,13 @@ Type Exercise::setVal(Type parm) {
 // To use the type alias in the return type, we need to include the scope.
 // Once the scope is clear for our declared member function, there is no need 
 // to reiterate the scope for the parameter type however. 
+// Likewise for initVal in the function body: the intended one is the member func,
+// which is the first one that will be found according to the scope rules.
 // 
 // Althogether we can rewrite the code as something like
 
 typedef string SType;
-double initVal();
+SType initVal();
 class Exercise {
 public:
     typedef double DType;
