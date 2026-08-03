@@ -1,13 +1,11 @@
 /*
-Choose one of the following abstractions (or one of your own choosing):
-Book, Date, Employee, Vehicle, Object, Tree
-
-Determine what data are needed in the class.
-Provide an appropriate set of constructors. 
-Explain your decisions.
+For the class you wrote for exercise 7.40 on p. 291, decide whether
+any of the constructors might use delegation. If so, write the 
+delegating constructors for your class. 
+If not, look at the list of abstractions that you think would use a 
+delegating constructor. Write the class definition for that abstraction.
 */
 
-// explanation: im building a binary search tree. basic methods only.
 #include <iostream>
 #include <string>
 
@@ -17,7 +15,9 @@ private:
     Tree *left = nullptr;
     Tree *right = nullptr;
 public:
-    Tree(const std::string s): data(s) { }
+    Tree(const std::string s, Tree *l, Tree *r): 
+        data(s), left(l), right(r) { }
+    Tree(const std::string s): Tree(s, nullptr, nullptr) { }
     const std::string& get_data() { return this->data; }
     void add(const Tree *node) {
         if (node->get_data() <= this->data) {
