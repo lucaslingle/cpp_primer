@@ -18,17 +18,17 @@ int main() {
     std::getline(std::cin, line);
     elems.str(line);
     while (elems >> elem)
-        v2.push_back(elem);
+        v1.push_back(elem);
     elems.clear();
 
     std::list<int> ls;
     std::getline(std::cin, line);
     elems.str(line);
     while (elems >> elem)
-        v1.push_back(elem);
+        ls.push_back(elem);
     elems.clear();
-    std::vec<int> v2(ls.cbegin(), ls.cend());
-    
+
+    std::vector<int> v2(ls.cbegin(), ls.cend());
     if (v1 == v2)
         std::cout << "v1 == v2" << std::endl;
     else
