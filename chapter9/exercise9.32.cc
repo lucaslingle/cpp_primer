@@ -9,3 +9,4 @@ iter = vi.insert(iter, *iter++)
 // the order of evaluation for arguments is undefined, so 
 // it is unclear whether first argument corresponds to 
 // the incremented or unincremented iterator.
+// the program's behavior is undefined, so the expression is illegal.
