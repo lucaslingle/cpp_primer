@@ -12,6 +12,7 @@ in order, and then use find and accumulate to do the sum.
 #include <algorithm>
 #include <numeric>
 #include <iterator>
+#include <functional>
 #include "Sales_item.h"
 using namespace std::placeholders;
 
