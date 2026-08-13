@@ -8,6 +8,7 @@ What are the advantages to using a set?
 // so a set has the advantage of speed.
 
 #include <iostream>
+#include <string>
 #include <vector>
 #include <map>
 #include <algorithm>
