@@ -33,7 +33,7 @@ using std::out_of_range;
 
 using VectorType = vector<string>;
 using SetType = set<size_t>;
-using MapType = map<string, shared_ptr<SetType>>;
+using MapType = map<string, SetType>;
 
 class QueryResult;
 
@@ -46,26 +46,19 @@ class TextQuery {
                 lines->push_back(line);
                 istringstream linestream(line);
                 string word;
-                while (linestream >> word) {
-                    if (word2idxs->find(word) != word2idxs->end())
-                        word2idxs->at(word)->insert(lineno);
-                    else {
-                        shared_ptr<SetType> nos = make_shared<SetType>();
-                        nos->insert(lineno);
-                        (*word2idxs)[word] = nos;
-                    }
-                }
+                while (linestream >> word)
+                    (*word2idxs)[word].insert(lineno);
                 ++lineno;
             }
         }
-        shared_ptr<QueryResult> query(const string &word);
+        QueryResult query(const string &word);
     private:
         shared_ptr<VectorType> lines = make_shared<VectorType>();
         shared_ptr<MapType> word2idxs = make_shared<MapType>();
 };
 
 class QueryResult {
-    friend void print(ostream&, shared_ptr<QueryResult>);
+    friend void print(ostream&, const QueryResult&);
     public:
         QueryResult(shared_ptr<VectorType> v, 
                     shared_ptr<MapType> m, 
@@ -76,19 +69,19 @@ class QueryResult {
         const string query;
 };
 
-shared_ptr<QueryResult> TextQuery::query(const string &word) {
-    return make_shared<QueryResult>(this->lines, this->word2idxs, word);
+QueryResult TextQuery::query(const string &word) {
+    return QueryResult(this->lines, this->word2idxs, word);
 }
 
-void print(ostream& ost, shared_ptr<QueryResult> queryresult) {
-    auto qr = *queryresult.get();
+ostream& print(ostream& ost, const QueryResult& qr) {
     try {
-        shared_ptr<SetType> linenos = qr.word2idxs->at(qr.query);
-        for (size_t lineno : *linenos)
+        SetType linenos = qr.word2idxs->at(qr.query);
+        for (size_t lineno : linenos)
             ost << lineno << ": " << qr.lines->at(lineno) << endl;  
+        return ost;
     } catch (const out_of_range& e) {
         ost << "Query string had no matches." << endl;
-        return;
+        return ost;
     }
 }
 
