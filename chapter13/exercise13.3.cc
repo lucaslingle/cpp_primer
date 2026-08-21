@@ -19,7 +19,7 @@ What happens when we copy a StrBlob? What about a StrBlobPtr?
 // from the source object to the destination object.
 //
 // A StrBlobPtr has only two data members, of type size_t 
-// and weak_ptr<vector<string>>, respectively. Upon assignment via
-// the synthesized default constructor, the size_t variable will be copied
+// and weak_ptr<vector<string>>, respectively. Upon running the
+// the synthesized copy constructor, the size_t variable will be copied
 // and the weak_ptr will be copied. In addition, the resource to which
 // weak_ptr points will have its weak reference count incremented.

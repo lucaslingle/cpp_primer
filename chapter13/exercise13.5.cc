@@ -11,7 +11,7 @@ public:
 private:
     string *ps;
     int i;
-}
+};
 ```
 */
 
@@ -24,4 +24,4 @@ class HasPtr {
     private:
         string *ps;
         int i;
-}
+};
