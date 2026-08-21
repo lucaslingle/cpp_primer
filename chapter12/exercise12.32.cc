@@ -1,3 +1,8 @@
+/*
+Rewrite ```TextQuery``` and ```QueryResult``` classes to use a
+```StrBlob``` instead of a ```vector<string>``` to hold the input file.
+*/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
