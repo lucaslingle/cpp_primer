@@ -1,0 +1,4 @@
+/*
+Write versions of the class `Foo` with print statements in their `sorted` functions
+to test your answers to the previous two exercises.
+*/
