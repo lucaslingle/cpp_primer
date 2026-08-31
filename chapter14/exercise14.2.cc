@@ -41,7 +41,10 @@ inline double Sales_data::avg_price() const {
 std::istream& operator>>(std::istream &ist, Sales_data &data) {
     double price;
     ist >> data.bookNo >> data.units_sold >> price;
-    data.revenue = price * data.units_sold;
+    if (ist)
+        data.revenue = price * data.units_sold;
+    else
+        data = Sales_data();
     return ist;
 }
 
