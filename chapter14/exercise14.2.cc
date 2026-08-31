@@ -3,6 +3,8 @@ Write declarations for the overloaded input, output, addition,
 and compount assignment operators for `Sales_data`.
 */
 
+// they only wanted declarations, but i went ahead and defined everything too
+
 #include <iostream>
 #include <string>
 #include <stdexcept>
