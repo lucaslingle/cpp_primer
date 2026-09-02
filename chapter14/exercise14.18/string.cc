@@ -6,10 +6,15 @@ using std::strlen;
 using std::size_t;
 using std::allocator;
 using std::equal;
+using std::lexicographical_compare;
 
 class String {
     friend bool operator==(const String &lhs, const String &rhs);
     friend bool operator!=(const String &lhs, const String &rhs);
+    friend bool operator<(const String &lhs, const String &rhs);
+    friend bool operator>(const String &lhs, const String &rhs);
+    friend bool operator<=(const String &lhs, const String &rhs);
+    friend bool operator>=(const String &lhs, const String &rhs);
     public:
         String() { }
         String(const char *p);
@@ -87,4 +92,22 @@ inline bool operator==(const String &lhs, const String &rhs) {
 
 inline bool operator!=(const String &lhs, const String &rhs) {
     return !(lhs == rhs);
+}
+
+inline bool operator<(const String &lhs, const String &rhs) {
+    return lexicographical_compare(
+        lhs.elements, lhs.first_free, rhs.elements, rhs.first_free
+    );
+}
+
+inline bool operator>(const String &lhs, const String &rhs) {
+    return (rhs < lhs);
+}
+
+inline bool operator<=(const String &lhs, const String &rhs) {
+    return !(lhs > rhs);
+}
+
+inline bool operator>=(const String &lhs, const String &rhs) {
+    return !(lhs < rhs);
 }
