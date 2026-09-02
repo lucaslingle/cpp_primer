@@ -1,0 +1,1 @@
+Define subscript operators for your StrVec, String, StrBlob, and StrBlobPtr classes.
