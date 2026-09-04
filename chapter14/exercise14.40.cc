@@ -42,9 +42,9 @@ void biggies(std::vector<std::string> &words,
              std::vector<std::string>::size_type sz) {
     // sort alphabetically
     std::sort(words.begin(), words.end());
-    // move duplicates to the end
+    // deduplicate and leave garbage at the end
     auto end_unique = std::unique(words.begin(), words.end());
-    // erase duplicates
+    // erase garbage
     words.erase(end_unique, words.end());
     // sort words by size while maintaining alphabetical sort order per size
     std::stable_sort(words.begin(), words.end(), StringShorter());
