@@ -11,12 +11,12 @@ using namespace std::placeholders;
 
 int main() {
     std::vector<int> ivec = {2, 3, 4, 5, 6, 7, 8, 9};
-    int quotient = 101;
+    int dividend = 101;
     std::transform(
         ivec.begin(), 
         ivec.end(), 
         ivec.begin(),
-        std::bind(std::modulus<int>(), quotient, _1)
+        std::bind(std::modulus<int>(), dividend, _1)
     );
     bool answer = std::any_of(
         ivec.begin(),
