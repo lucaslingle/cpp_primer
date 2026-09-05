@@ -42,15 +42,13 @@ Node::Node(const Node &node):
     left(node.left ? std::unique_ptr<Node>(new Node(*node.left)) : nullptr),
     right(node.right ? std::unique_ptr<Node>(new Node(*node.right)) : nullptr)
 {
-
 }
 
 Node::Node(Node &&node) noexcept : 
     data(std::move(node.data)), 
     left(std::move(node.left)), 
-    right(std::move(node.right)) // moving a unique ptr nulls it.
+    right(std::move(node.right)) // unique_ptr move assignment operator nulls rhs
 { 
-
 }
 
 Node& Node::operator=(const Node &node) {
@@ -102,13 +100,11 @@ public:
 Tree::Tree(const Tree &tree):
     root(tree.root ? std::unique_ptr<Node>(new Node(*tree.root)) : nullptr)
 {
-
 }
 
 Tree::Tree(Tree &&tree) noexcept : 
-    root(std::move(tree.root)) // std::move a unique ptr nulls it later.
+    root(std::move(tree.root)) // unique_ptr move assignment operator nulls rhs
 { 
-
 }
 
 Tree& Tree::operator=(const Tree &tree) {
@@ -121,7 +117,7 @@ Tree& Tree::operator=(const Tree &tree) {
 Tree& Tree::operator=(Tree &&tree) noexcept {
     if (this == &tree)
         return *this;
-    root = std::move(tree.root); // std::move on a unique ptr nulls it later.
+    root = std::move(tree.root); // unique_ptr move assignment operator nulls rhs
     return *this;
 }
 
