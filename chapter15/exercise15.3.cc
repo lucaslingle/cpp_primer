@@ -2,6 +2,10 @@
 Define your own versions of the `Quote` class and the `print_total` function.
 */
 
+#include <iostream>
+#include <string>
+#include <cstddef>
+
 class Quote {
 public:
     Quote() = default;
@@ -14,7 +18,7 @@ private:
     std::string bookNo;
 protected:
     double price = 0.0;
-}
+};
 
 double print_total(std::ostream& os, const Quote &item, std::size_t n) {
     double ret = item.net_price(n);
