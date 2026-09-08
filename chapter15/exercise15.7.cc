@@ -70,11 +70,9 @@ LimitedDiscount_quote::LimitedDiscount_quote(
 }
 
 double LimitedDiscount_quote::net_price(std::size_t cnt) const {
-    if (cnt < min_qty)
-        return cnt * price;
-    if (min_qty <= cnt && cnt <= max_qty)
-        return cnt * price * (1 - discount);
-    return max_qty * price * (1 - discount) + (cnt - max_qty) * price;
+    if (cnt <= max_qty)
+        return (1 - discount) * cnt * price;
+    return (1 - discount) * max_qty * price + (cnt - max_qty) * price;
 }
 
 int main() {
