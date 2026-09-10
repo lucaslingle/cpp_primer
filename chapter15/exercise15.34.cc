@@ -12,22 +12,38 @@ Query("fiery") & Query("bird") | Query("wind");
 
 // (a)
 //
-// Query(s)
+// Query_base constructor, default
+// WordQuery constructor, string-based
 // Query constructor, string-based
-// WordQuery constructor, string-based constructor
-// Query_base constructor, default (called implicitly by WordQuery constructor)
-//
-// q1 & q2
-// AndQuery constructor (called by operator&)
-// Query_base constructor, default (called implicitly by AndQuery constructor)
-// Query constructor, shared_ptr-based (called by operator&)
-//
-// q3 | q4
-// OrQuery constructor (called by operator|)
-// Query_base constructor, default (called implicitly by OrQuery constructor)
-// Query constructor, shared_ptr-based (called by operator|)
+// Query_base constructor, default
+// WordQuery constructor, string-based
+// Query constructor, string-based
+// Query_base constructor, default
+// BinaryQuery constructor
+// AndQuery constructor
+// Query constructor, pointer-based
+// Query_base constructor, default
+// WordQuery constructor, string-based
+// Query constructor, string-based
+// Query_base constructor, default
+// BinaryQuery constructor
+// OrQuery constructor
+// Query constructor, pointer-based
 
 // (b) 
+//
+// Query::rep()
+// BinaryQuery::rep()
+// Query::rep()
+// BinaryQuery::rep()
+// Query::rep()
+// WordQuery::rep()
+// Query::rep()
+// WordQuery::rep()
+// Query::rep()
+// WordQuery::rep()
+//
+// human "readable" version:
 // operator<<(ostream &os, const Query &query) calls query.rep()
 //
 // For query.rep() it is a call to Query::rep()
@@ -57,7 +73,9 @@ Query("fiery") & Query("bird") | Query("wind");
 // q->rep() applies to a WordQuery derived class of Query_base,
 // which prints the word "wind"
 
-// (c) For q.eval() it is a call to Query::eval()
+// (c) 
+//
+// For q.eval() it is a call to Query::eval()
 // which calls q->eval() for a data member `shared_ptr<Query_base> q`
 // q->rep() is being applied to an OrQuery derived class of Query_base.
 // OrQuery::rep() declared but not yet defined by OrQuery.
