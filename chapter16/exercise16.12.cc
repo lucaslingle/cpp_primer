@@ -9,7 +9,10 @@ including the various `const` members that were not shown in the text.
 #include <stdexcept>
 #include <cstddef>
 
+template <typename T> class BlobPtr;
+
 template <typename T> class Blob {
+friend class BlobPtr<T>;
 public:
     typedef T value_type;
     typedef typename std::vector<T>::size_type size_type;
@@ -25,7 +28,7 @@ public:
 private:
     std::shared_ptr<std::vector<T>> data;
     void check(size_type i, const std::string &msg) const;
-}
+};
 
 template <typename T>
 Blob<T>::Blob(): data(std::make_shared<std::vector<T>>()) { }
@@ -60,7 +63,7 @@ T& Blob<T>::operator[](size_type i) {
 
 template <typename T> class BlobPtr {
 public:
-    BlobPtr(): curr(o) { }
+    BlobPtr(): curr(0) { }
     BlobPtr(Blob<T> &a, std::size_t sz = 0):
         wptr(a.data), curr(sz) { }
     T& operator*() const {
@@ -73,10 +76,10 @@ private:
     std::shared_ptr<std::vector<T>> check(std::size_t, const std::string&) const;
     std::weak_ptr<std::vector<T>> wptr;
     std::size_t curr;
-}
+};
 
 template <typename T>
-std::shared_ptr<std::vector<T>> StrBlobPtr::check(std::size_t i, const string& msg) const {
+std::shared_ptr<std::vector<T>> BlobPtr::check(std::size_t i, const std::string& msg) const {
     auto ret = wptr.lock();
     if (!ret)
         throw std::runtime_error("unbound BlobPtr");
